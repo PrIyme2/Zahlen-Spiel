@@ -110,6 +110,16 @@ public class GewinnView extends JFrame {
                 rundenWertLabel.setText("" + ergebnis);
             }
         }
+        if (model.hatGewonnen() || model.getRundenErgebnis() > 0) {
+            rundenWertLabel.setBackground(Color.GREEN);
+            punkteWertLabel.setBackground(Color.GREEN);
+        } else if (model.hatVerloren() || model.getRundenErgebnis() < 0) {
+            rundenWertLabel.setBackground(Color.RED);
+            punkteWertLabel.setBackground(Color.RED);
+        } else {
+            rundenWertLabel.setBackground(Color.WHITE);
+            punkteWertLabel.setBackground(Color.WHITE);
+        }
 
         punkteWertLabel.setText("" + model.getGesamtPunkte());
     }
@@ -119,6 +129,8 @@ public class GewinnView extends JFrame {
         rundenWertLabel.setText("Tippe eine Zahl von 1 bis 9");
         punkteWertLabel.setText("Gesamtpunkte: " + gesamtPunkte);
         spielerFeld.requestFocus();
+        rundenWertLabel.setBackground(Color.WHITE);
+        punkteWertLabel.setBackground(Color.WHITE);
     }
 
     public void zeigeFehler(String meldung) {
