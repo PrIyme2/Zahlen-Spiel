@@ -90,4 +90,38 @@ public class GewinnView extends JFrame {
     public String getEingabeText() {
         return spielerFeld.getText();
     }
+    public void registriereController(GewinnController controller) {
+        spielerFeld.addActionListener(e -> controller.verarbeiteEingabe());
+        nochEinmalButton.addActionListener(e -> controller.verarbeiteNochEinmal());
+    }
+
+    public void aktualisiere(GewinnModel model) {
+        computerFeld.setText("" + model.getComputerZahl());
+
+        if (model.hatVerloren()) {
+            rundenWertLabel.setText("Verloren");
+        } else if (model.hatGewonnen()) {
+            rundenWertLabel.setText("Gewonnen");
+        } else {
+            int ergebnis = model.getRundenErgebnis();
+            if (ergebnis > 0) {
+                rundenWertLabel.setText("+" + ergebnis);
+            } else {
+                rundenWertLabel.setText("" + ergebnis);
+            }
+        }
+
+        punkteWertLabel.setText("" + model.getGesamtPunkte());
+    }
+    public void reset(int gesamtPunkte) {
+        spielerFeld.setText("");
+        computerFeld.setText("");
+        rundenWertLabel.setText("Tippe eine Zahl von 1 bis 9");
+        punkteWertLabel.setText("Gesamtpunkte: " + gesamtPunkte);
+        spielerFeld.requestFocus();
+    }
+
+    public void zeigeFehler(String meldung) {
+        rundenWertLabel.setText(meldung);
+    }
 }
