@@ -31,4 +31,23 @@ public class GewinnModel {
     public int getRundenErgebnis() {
         return this.rundenErgebnis;
     }
+
+    public void berechneComputerZahl() {
+        int r = (int) (Math.random() * 9) + 1;
+        this.computerZahl = r;
+    }
+
+    public void berechneRunde(int spielerZahl) {
+        this.spielerZahl = spielerZahl;
+        berechneComputerZahl();
+        if (this.spielerZahl == this.computerZahl) {
+            this.rundenErgebnis = 20;
+        } else if (this.spielerZahl == this.computerZahl - 1 || this.spielerZahl == this.computerZahl + 1) {
+            this.rundenErgebnis = 5;
+        } else {
+            this.rundenErgebnis = -10;
+        }
+        this.gesamtPunkte = this.gesamtPunkte + this.rundenErgebnis;
+    }
+
 }
