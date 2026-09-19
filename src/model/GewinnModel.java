@@ -49,5 +49,17 @@ public class GewinnModel {
         }
         this.gesamtPunkte = this.gesamtPunkte + this.rundenErgebnis;
     }
+    public boolean hatGewonnen() {
+        if (this.gesamtPunkte >= 100) {
+            return true;
+        }
+        return false;
+    }
+    public boolean hatVerloren() {
+        if (0 >= this.gesamtPunkte) {
+            return true;
+        }
+        return false;
+    }
 
 }
