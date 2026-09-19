@@ -61,6 +61,7 @@ public class GewinnView extends JFrame {
         computerFeld.setBackground(Color.WHITE);
 
         nochEinmalButton = new JButton("Noch einmal!");
+        nochEinmalButton.setEnabled(false);
         nochEinmalButton.setFont(new Font("SansSerif", Font.PLAIN, 16));
 
         JPanel rasterPanel = new JPanel(new GridLayout(4, 2, 10, 8));
@@ -112,6 +113,8 @@ public class GewinnView extends JFrame {
         }
 
         punkteWertLabel.setText("" + model.getGesamtPunkte());
+        spielerFeld.setEnabled(false);
+        nochEinmalButton.setEnabled(true);
     }
     public void reset(int gesamtPunkte) {
         spielerFeld.setText("");
@@ -119,6 +122,8 @@ public class GewinnView extends JFrame {
         rundenWertLabel.setText("Tippe eine Zahl von 1 bis 9");
         punkteWertLabel.setText("Gesamtpunkte: " + gesamtPunkte);
         spielerFeld.requestFocus();
+        spielerFeld.setEnabled(true);
+        nochEinmalButton.setEnabled(false);
     }
 
     public void zeigeFehler(String meldung) {
