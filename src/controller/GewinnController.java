@@ -3,18 +3,34 @@ package controller;
 import model.GewinnModel;
 import view.GewinnView;
 
+/**
+ * Controller zur Steuerung des Spielablaufs im Zahlen-Gewinnspiel.
+ * Verarbeitet Benutzereingaben und koordiniert Model und View.
+ *
+ * @author Fateh Arafa
+ * @version 15.09
+ */
 public class GewinnController {
     private GewinnModel model;
     private GewinnView view;
 
+    /**
+     * Erzeugt einen neuen Controller mit dem angegebenen Model.
+     */
     public GewinnController(GewinnModel model) {
         this.model = model;
     }
 
+    /**
+     * Weist dem Controller die zu steuernde View zu.
+     */
     public void setView(GewinnView view) {
         this.view = view;
     }
 
+    /**
+     * Validiert die eingegebene Zahl, startet die Spielrunde und aktualisiert die View.
+     */
     public void verarbeiteEingabe() {
         if (this.view == null || this.model == null) {
             return;
@@ -46,6 +62,9 @@ public class GewinnController {
         this.view.aktualisiere(this.model);
     }
 
+    /**
+     * Setzt die Anzeige für den Start einer weiteren Spielrunde zurück.
+     */
     public void verarbeiteNochEinmal() {
         if (this.view != null && this.model != null) {
             this.view.reset(this.model.getGesamtPunkte());

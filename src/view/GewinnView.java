@@ -6,6 +6,13 @@ import model.GewinnModel;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Grafische Benutzeroberfläche für das Zahlen-Gewinnspiel.
+ * Stellt die Komponenten zur Ein- und Ausgabe für den Spieler dar.
+ *
+ * @author Fateh Arafa
+ * @version 15.09
+ */
 public class GewinnView extends JFrame {
     private JLabel rundenTitelLabel;
     private JLabel punkteTitelLabel;
@@ -19,11 +26,17 @@ public class GewinnView extends JFrame {
 
     private JButton nochEinmalButton;
 
+    /**
+     * Erzeugt das Spielfenster und initialisiert die Komponenten.
+     */
     public GewinnView() {
-        super("Zahlen-Gewinnspiel (v1.0)");
+        super("Zahlen-Gewinnspiel");
         baueGuiAuf();
     }
 
+    /**
+     * Richtet das Layout ein und platziert alle GUI-Elemente im Fenster.
+     */
     private void baueGuiAuf() {
         Font labelFont = new Font("SansSerif", Font.PLAIN, 18);
         Font anzeigeFont = new Font("SansSerif", Font.BOLD, 22);
@@ -88,14 +101,26 @@ public class GewinnView extends JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     * Liest den eingegebenen Text aus dem Spieler-Eingabefeld aus.
+     *
+     * @return der Text aus dem Eingabefeld
+     */
     public String getEingabeText() {
         return spielerFeld.getText();
     }
+
+    /**
+     * Registriert den Controller als Listener für Eingaben und Buttons.
+     */
     public void registriereController(GewinnController controller) {
         spielerFeld.addActionListener(e -> controller.verarbeiteEingabe());
         nochEinmalButton.addActionListener(e -> controller.verarbeiteNochEinmal());
     }
 
+    /**
+     * Aktualisiert die Benutzeroberfläche anhand des aktuellen Spielzustands.
+     */
     public void aktualisiere(GewinnModel model) {
         computerFeld.setText("" + model.getComputerZahl());
 
@@ -126,6 +151,10 @@ public class GewinnView extends JFrame {
         spielerFeld.setEnabled(false);
         nochEinmalButton.setEnabled(true);
     }
+
+    /**
+     * Setzt die Eingabefelder und Statusanzeigen für eine neue Runde zurück.
+     */
     public void reset(int gesamtPunkte) {
         spielerFeld.setText("");
         computerFeld.setText("");
@@ -137,6 +166,9 @@ public class GewinnView extends JFrame {
         nochEinmalButton.setEnabled(false);
     }
 
+    /**
+     * Zeigt eine Fehlermeldung auf dem Rundenergebnis-Feld an.
+     */
     public void zeigeFehler(String meldung) {
         rundenWertLabel.setText(meldung);
     }
